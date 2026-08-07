@@ -429,14 +429,32 @@ a {
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
+    /* Navbar Mobile Fix */
+    .nav-container {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+    
+    .nav-links {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav-links li a {
+        font-size: 0.95rem;
+    }
+
+    /* Hero Fix */
     .hero {
         flex-direction: column;
         text-align: center;
-        padding-top: 100px;
+        padding-top: 120px; /* space for taller navbar */
     }
     
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
 
     .form-card {
@@ -447,11 +465,24 @@ a {
         grid-template-columns: 1fr;
     }
     
-    .result-card {
-        padding: 30px 20px;
+    .compact-result {
+        flex-direction: column;
+        text-align: center;
+        border-left: none;
+        border-top: 5px solid #ccc;
     }
-    
-    .result-details h2 {
-        font-size: 2rem;
+    .compact-result.risk-high {
+        border-top-color: var(--danger-color);
+    }
+    .compact-result.risk-low {
+        border-top-color: var(--success-color);
+    }
+}
+
+@media (max-width: 480px) {
+    .btn-submit {
+        width: 100%;
+        padding: 15px 20px;
+        font-size: 1rem;
     }
 }
