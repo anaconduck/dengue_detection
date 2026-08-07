@@ -336,10 +336,13 @@ a {
 .btn-submit {
     background-color: var(--secondary-color);
     color: white;
-    padding: 15px 40px;
-    font-size: 1.1rem;
-    width: 100%;
-    max-width: 400px;
+    padding: 18px 50px;
+    font-size: 1.15rem;
+    width: fit-content;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
 .btn-submit:hover {
