@@ -1,4 +1,4 @@
-# DengueAI 🦟 - DSS Prediction System
+# DengueAI - DSS Prediction System
 
 DengueAI adalah sebuah sistem cerdas (Sistem Pendukung Keputusan Medis) berbasis *Machine Learning* yang dirancang untuk membantu tenaga medis mendeteksi risiko Dengue Shock Syndrome (DSS) secara dini dengan cepat dan akurat.
 
