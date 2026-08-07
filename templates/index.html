@@ -1,174 +1,261 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DengueAI - Deteksi DSS</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="icon" href="../static/images/insect.png">
-    <title>DengueAI</title>
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar">
-  <div class="nav-container">
-    <div class="nav-logo">DengueAI</div>
-    <ul class="nav-links">
-      <li><a href="/">Home</a></li>
-      <li><a href="#form-section">Predict</a></li>
-      <li><a href="#about">About</a></li>
-    </ul>
-  </div>
-</nav>
-
-  <!-- Hero Section
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">DengueAI</h1>
-            <p class="hero-subtitle">
-                Teknologi AI untuk mendeteksi Dengue Shock Syndrome secara dini 
-                dengan akurasi tinggi.
-            </p>
-            <div class="hero-buttons">
-                <a href="#form-section" class="btn-primary">Mulai Prediksi</a>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fa-solid fa-mosquito"></i> DengueAI
             </div>
+            <ul class="nav-links">
+                <li><a href="/">Beranda</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#form-section">Screening Pasien</a></li>
+            </ul>
         </div>
-    </section> -->
+    </nav>
 
     <!-- Hero Section -->
-<section class="hero">
-    <div class="hero-content">
-        <!-- Tambahkan gambar di atas judul -->
-        <img src="{{ url_for('static', filename='images/insect.png') }}" alt="Logo" class="hero-image">
-
-        <h1 class="hero-title">DengueAI</h1>
-        <p class="hero-subtitle">
-            Teknologi AI untuk mendeteksi penyakit Dengue Shock Syndrome secara dini 
-            dengan akurasi tinggi.
-        </p>
-        <div class="hero-buttons">
-            <a href="#form-section" class="btn-primary">Mulai Prediksi</a>
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Deteksi Dini <br><span class="highlight">Dengue Shock Syndrome</span></h1>
+            <p class="hero-subtitle">
+                Sistem pendukung keputusan medis berbasis Kecerdasan Buatan (AI) untuk membantu dokter memprediksi risiko DSS dengan cepat dan akurat berdasarkan parameter klinis dan laboratorium.
+            </p>
+            <div class="hero-action">
+                <a href="#form-section" class="btn btn-primary">Mulai Screening <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
         </div>
-    </div>
-</section>
+        <div class="hero-image-wrapper">
+            <img src="{{ url_for('static', filename='images/insect.png') }}" alt="Dengue Vector" class="hero-image floating">
+        </div>
+    </header>
 
-    <!-- Form Section -->
-    <section id="form-section">
+    <!-- About / Features Section -->
+    <section id="about" class="features-section">
         <div class="container">
-            <div class="card">
-                <div class="card-image">
-                    <h2 class="card-heading">
-                        Dengue Shock Syndrome <br> Detection
-                    </h2>
+            <div class="features-header">
+                <h2>Mengapa Menggunakan DengueAI?</h2>
+                <p>Teknologi cerdas untuk mendukung keputusan klinis yang lebih cepat, tepat, dan menyelamatkan nyawa.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fa-solid fa-bolt feature-icon"></i>
+                    <h3>Diagnosis Instan</h3>
+                    <p>Hanya dengan memasukkan 19 parameter klinis dan laboratorium, dokter bisa melihat risiko DSS dalam hitungan detik.</p>
                 </div>
-
-                <!-- Form -->
-                <form class="card-form" action="{{ url_for('predict') }}" method="post">
-                    
-                    <div class="input">
-                        <input name="EFUSIPLEURA" type="number" step="any" class="input-field" required/>
-                        <label class="input-label">EFUSIPLEURA</label>
-                    </div>
-                    <div class="input">
-                        <input name="HEPATOMEGALI" type="number" step="any" class="input-field" required/>
-                        <label class="input-label">HEPATOMEGALI</label>
-                    </div>
-                    <div class="input">
-                        <input name="VOMITING" type="number" step="any" class="input-field" required/>
-                        <label class="input-label">VOMITING</label>
-                    </div>
-                    <div class="input">
-                        <input name="ENSEFALOPATI" type="number" step="any" class="input-field" required/>
-                        <label class="input-label">ENSEFALOPATI</label>
-                    </div>
-                    <div class="input">
-                        <input name="NAUSEA" type="number" step="any" class="input-field" required/>
-                        <label class="input-label">NAUSEA</label>
-                    </div>
-                    <div class="input">
-                        <input name="EPIGASTRIUM" type="number" step="any" class="input-field" required/>
-                        <label class="input-label">EPIGASTRIUM</label>
-                    </div>
-                    <div class="input">
-                        <input name="ASITES" type="number" step="any" class="input-field" required/>
-                        <label class="input-label">ASITES</label>
-                    </div>
-                    <div class="input">
-                        <input name="HEMORRHAGE" type="number" step="any" class="input-field" required/>
-                        <label class="input-label">HEMORRHAGE</label>
-                    </div>
-                    <div class="input">
-                        <input name="HEPATIC_FAILURE" type="number" step="any" class="input-field" required/>
-                        <label class="input-label">HEPATIC FAILURE</label>
-                    </div>
-                    <div class="input">
-                        <input name="ENSEFALITIS" type="number" step="any" class="input-field" required/>
-                        <label class="input-label">ENSEFALITIS</label>
-                    </div>
-                    <div class="input">
-                        <input name="RUMPLELEEDE" type="number" step="any" class="input-field" required/>
-                        <label class="input-label">RUMPLELEEDE</label>
-                    </div>
-                    <div class="input">
-                        <input name="HEADACHE" type="number" step="any" class="input-field" required/>
-                        <label class="input-label">HEADACHE</label>
-                    </div>
-                    <div class="input">
-                        <input name="CONTACT_HISTORY" type="number" step="any" class="input-field" required/>
-                        <label class="input-label">CONTACT HISTORY</label>
-                    </div>
-                    <div class="input">
-                        <input name="KIDNEY_FAILURE" type="number" step="any" class="input-field" required/>
-                        <label class="input-label">KIDNEY FAILURE</label>
-                    </div>
-                    <div class="input">
-                        <input name="TROMBOSIT" type="number" step="any" class="input-field" required/>
-                        <label class="input-label">TROMBOSIT</label>
-                    </div>
-                    <div class="input">
-                        <input name="ALB" type="number" step="any" class="input-field" required/>
-                        <label class="input-label">ALB</label>
-                    </div>
-                    <div class="input">
-                        <input name="EOSABS" type="number" step="any" class="input-field" required/>
-                        <label class="input-label">EOSABS</label>
-                    </div>
-                    <div class="input">
-                        <input name="FEVER" type="number" step="any" class="input-field" required/>
-                        <label class="input-label">FEVER</label>
-                    </div>
-                    <div class="input">
-                        <input name="UR" type="number" step="any" class="input-field" required/>
-                        <label class="input-label">UR</label>
-                    </div>
-
-                    <div class="action">
-                        <button type="submit" class="action-button">SUBMIT</button>
-                    </div>
-                </form>
-
-                <center><p id="prediction-text" style="color: white; font-weight: bold; font-size: 24px;">
-                    {{ prediction_text }}
-                </p>
-                </center>
-                <center>
-                    <a href="/" class="back-home">go back homepage</a>
-                </center>
+                <div class="feature-card">
+                    <i class="fa-solid fa-brain feature-icon"></i>
+                    <h3>Algoritma Canggih</h3>
+                    <p>Sistem kami memanfaatkan model Machine Learning (AI) yang telah dilatih secara khusus untuk mendeteksi pola DSS.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-notes-medical feature-icon"></i>
+                    <h3>Prioritas Penanganan</h3>
+                    <p>Membantu tim medis mendeteksi pasien dengan risiko tinggi agar segera mendapatkan penanganan dan observasi intensif.</p>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Form Section -->
+    <section id="form-section" class="section-container">
+        {% if error_message %}
+        <div style="background-color: #fef2f2; border-left: 4px solid #ef4444; color: #b91c1c; padding: 15px 20px; margin-bottom: 20px; border-radius: 4px;">
+            <i class="fa-solid fa-triangle-exclamation"></i> <strong>Error:</strong> {{ error_message }}
+        </div>
+        {% endif %}
+        
+        <div class="form-card">
+            <div class="form-header">
+                <h2>Formulir Pemeriksaan Pasien</h2>
+                <p>Masukkan data gejala klinis, observasi fisik, dan hasil laboratorium.</p>
+            </div>
+
+            <form action="{{ url_for('predict') }}#result-area" method="post" class="screening-form">
+                
+                <!-- 1. Gejala Klinis -->
+                <div class="form-group-section">
+                    <h3 class="section-title"><i class="fa-solid fa-thermometer-half"></i> Gejala Klinis</h3>
+                    <div class="grid-container">
+                        <div class="input-wrap">
+                            <label>Demam (FEVER)</label>
+                            <select name="FEVER" class="custom-select" required>
+                                <option value="" disabled selected>Pilih...</option>
+                                <option value="1">Ya</option>
+                                <option value="0">Tidak</option>
+                            </select>
+                        </div>
+                        <div class="input-wrap">
+                            <label>Sakit Kepala (HEADACHE)</label>
+                            <select name="HEADACHE" class="custom-select" required>
+                                <option value="" disabled selected>Pilih...</option>
+                                <option value="1">Ya</option>
+                                <option value="0">Tidak</option>
+                            </select>
+                        </div>
+                        <div class="input-wrap">
+                            <label>Mual (NAUSEA)</label>
+                            <select name="NAUSEA" class="custom-select" required>
+                                <option value="" disabled selected>Pilih...</option>
+                                <option value="1">Ya</option>
+                                <option value="0">Tidak</option>
+                            </select>
+                        </div>
+                        <div class="input-wrap">
+                            <label>Muntah (VOMITING)</label>
+                            <select name="VOMITING" class="custom-select" required>
+                                <option value="" disabled selected>Pilih...</option>
+                                <option value="1">Ya</option>
+                                <option value="0">Tidak</option>
+                            </select>
+                        </div>
+                        <div class="input-wrap">
+                            <label>Riwayat Kontak (CONTACT HISTORY)</label>
+                            <select name="CONTACT_HISTORY" class="custom-select" required>
+                                <option value="" disabled selected>Pilih...</option>
+                                <option value="1">Ya</option>
+                                <option value="0">Tidak</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Pemeriksaan Fisik & Komplikasi -->
+                <div class="form-group-section">
+                    <h3 class="section-title"><i class="fa-solid fa-stethoscope"></i> Pemeriksaan Fisik & Komplikasi</h3>
+                    <div class="grid-container">
+                        <div class="input-wrap">
+                            <label>Efusi Pleura</label>
+                            <input name="EFUSIPLEURA" type="number" step="any" class="custom-input" placeholder="0" required/>
+                        </div>
+                        <div class="input-wrap">
+                            <label>Hepatomegali</label>
+                            <input name="HEPATOMEGALI" type="number" step="any" class="custom-input" placeholder="0" required/>
+                        </div>
+                        <div class="input-wrap">
+                            <label>Nyeri Epigastrium</label>
+                            <input name="EPIGASTRIUM" type="number" step="any" class="custom-input" placeholder="0" required/>
+                        </div>
+                        <div class="input-wrap">
+                            <label>Asites</label>
+                            <input name="ASITES" type="number" step="any" class="custom-input" placeholder="0" required/>
+                        </div>
+                        <div class="input-wrap">
+                            <label>Hemorrhage (Pendarahan)</label>
+                            <input name="HEMORRHAGE" type="number" step="any" class="custom-input" placeholder="0" required/>
+                        </div>
+                        <div class="input-wrap">
+                            <label>Uji Rumple Leede</label>
+                            <input name="RUMPLELEEDE" type="number" step="any" class="custom-input" placeholder="0" required/>
+                        </div>
+                        <div class="input-wrap">
+                            <label>Ensefalopati</label>
+                            <input name="ENSEFALOPATI" type="number" step="any" class="custom-input" placeholder="0" required/>
+                        </div>
+                        <div class="input-wrap">
+                            <label>Ensefalitis</label>
+                            <input name="ENSEFALITIS" type="number" step="any" class="custom-input" placeholder="0" required/>
+                        </div>
+                        <div class="input-wrap">
+                            <label>Hepatic Failure</label>
+                            <input name="HEPATIC_FAILURE" type="number" step="any" class="custom-input" placeholder="0" required/>
+                        </div>
+                        <div class="input-wrap">
+                            <label>Kidney Failure</label>
+                            <input name="KIDNEY_FAILURE" type="number" step="any" class="custom-input" placeholder="0" required/>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Hasil Laboratorium -->
+                <div class="form-group-section">
+                    <h3 class="section-title"><i class="fa-solid fa-microscope"></i> Hasil Laboratorium</h3>
+                    <div class="grid-container">
+                        <div class="input-wrap">
+                            <label>Trombosit (/uL)</label>
+                            <input name="TROMBOSIT" type="number" step="any" class="custom-input" placeholder="Misal: 120000" required/>
+                        </div>
+                        <div class="input-wrap">
+                            <label>Albumin (ALB)</label>
+                            <input name="ALB" type="number" step="any" class="custom-input" placeholder="Nilai ALB" required/>
+                        </div>
+                        <div class="input-wrap">
+                            <label>Eosinofil Absolut (EOSABS)</label>
+                            <input name="EOSABS" type="number" step="any" class="custom-input" placeholder="Nilai EOSABS" required/>
+                        </div>
+                        <div class="input-wrap">
+                            <label>Ureum (UR)</label>
+                            <input name="UR" type="number" step="any" class="custom-input" placeholder="Nilai UR" required/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-submit"><i class="fa-solid fa-microchip"></i> Proses Prediksi AI</button>
+                </div>
+            </form>
+
+            <!-- Compact Result Section -->
+            {% if prediction_text %}
+            <div id="result-area" class="compact-result {% if prediction_text == 'High Risk' %}risk-high{% else %}risk-low{% endif %}">
+                <div class="compact-icon">
+                    {% if prediction_text == 'High Risk' %}
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    {% else %}
+                    <i class="fa-solid fa-circle-check"></i>
+                    {% endif %}
+                </div>
+                <div class="compact-text">
+                    <h4>Hasil Analisis AI: <strong>{{ prediction_text }}</strong></h4>
+                    <p>
+                        {% if prediction_text == 'High Risk' %}
+                        Risiko Tinggi Dengue Shock Syndrome. Segera lakukan penanganan medis.
+                        {% else %}
+                        Tidak Ada Risiko (No Risk) tinggi DSS saat ini. Pasien stabil.
+                        {% endif %}
+                    </p>
+                    <a href="/" class="btn btn-outline" style="margin-top: 15px; display: inline-flex; font-size: 0.9rem; padding: 8px 16px;">
+                        <i class="fa-solid fa-rotate-right"></i> Cek Pasien Lain
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 DengueAI. Wahyu Kusuma Wardhana</p>
+    </footer>
+
+    <!-- Auto scroll to result if prediction exists -->
     <script>
-        if (window.location.pathname === '/predict') {
-            window.onload = function() {
-                window.scrollTo(0, document.body.scrollHeight);
-            };
-        } else {
-            window.onload = function() {
-                window.scrollTo(0, 0);
-            };
-        }
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.location.hash === '#result-area') {
+                const element = document.getElementById('result-area');
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        });
     </script>
 </body>
 </html>
